@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import CryptoTable from "./components/CryptoTable/CryptoTable";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -21,17 +22,7 @@ const App = () => {
     };
   }, []);
 
-  return (
-    <>
-      {data &&
-        data.map((i, key) => (
-          <div key={key}>
-            <h1>{i.name}</h1>
-            <h2>{i.price}</h2>
-          </div>
-        ))}
-    </>
-  );
+  return <>{data && <CryptoTable data={data} />}</>;
 };
 
 export default App;
