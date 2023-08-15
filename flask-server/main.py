@@ -1,29 +1,36 @@
 import random
+from flask.json import jsonify
 import requests
+import re
 from bs4 import BeautifulSoup
 from flask import Flask
 
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/getdata")
 def hello_world():
     data = get_page_data()
-    ret = ""
-    for i in data:
-        ret = ret + "[" + i[0] + "," + str(i[1]) + "]"
-    return ret
+
+    
+    return jsonify({"datalist":data})
+
+
 
 
 URL = "https://coinmarketcap.com/"
-
+#sc-482c3d57-3 iTyfmj cmc-table
+#sc-dba2d818-3 iWUxTT cmc-table
+#regex sc-\w{8}-3 i\w{5} cmc-table
 
 def get_page_data():
+    #ret type array of objects
     page = requests.get(URL)
 
     soup = BeautifulSoup(page.content, "html.parser")
-    maindiv = soup.find("table", class_="sc-482c3d57-3 iTyfmj cmc-table")
     # need to find a way to get this dynamically updating
+
+    maindiv = soup.find("table", class_=re.compile(r'sc-\w{8}-3 i\w{5} cmc-table'))#needs to be tested on another day if works
     tabledata = maindiv.tbody.find_all("tr")
 
     topten = []
@@ -32,19 +39,23 @@ def get_page_data():
         row = i.find_all("td")
         name = row[2].div.a.div.p.text
         price = row[3].div.a.span.text
-        topten.append([name, float(price[1:].replace(",", ""))])
+        objtoadd = {
+            "name": name,
+            "price": float(price[1:].replace(",", ""))
+        }
+        topten.append(objtoadd)
     for j in range(10, 100):
         i = tabledata[j]
         row = i.find_all("td")
         name = row[2].a.findChildren()[1].text
         price = row[3].span.text
-        topten.append([name, float(price[1:].replace(",", ""))])
+        objtoadd = {
+            "name": name,
+            "price": float(price[1:].replace(",", ""))
+        }
+        topten.append(objtoadd)
 
     print(topten)
-    topten.sort(key=lambda x: x[1], reverse=True)
-
-    print(topten)
-
     return topten
 
 
@@ -53,4 +64,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    app.run()
