@@ -9,7 +9,7 @@ const CryptoTableBody = ({ data }) => {
             <tr key={key}>
               <td>{key + 1}</td>
               <td>{i.name}</td>
-              <td>{i.price}</td>
+              <td>{i.quote.USD.price}</td>
             </tr>
           );
         })}

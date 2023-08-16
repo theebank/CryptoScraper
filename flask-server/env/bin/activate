@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/theebankumaresan/Documents/Programming/CryptoScraper/env"
+VIRTUAL_ENV="/Users/theebankumaresan/Documents/Programming/CryptoScraper/flask-server/env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

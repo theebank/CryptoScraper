@@ -10,7 +10,7 @@ const App = () => {
       fetch("/getdata")
         .then((res) => res.json())
         .then((data) => {
-          setData(data.datalist);
+          setData(data);
           console.log(data);
         });
     }
@@ -22,7 +22,7 @@ const App = () => {
     };
   }, []);
 
-  return <>{data && <CryptoTable data={data} />}</>;
+  return <>{data && <CryptoTable data={data.data} />}</>;
 };
 
 export default App;
