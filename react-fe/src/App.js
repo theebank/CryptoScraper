@@ -16,7 +16,7 @@ const App = () => {
     }
     getData();
 
-    const interval = setInterval(() => getData(), 60000);
+    const interval = setInterval(() => getData(), 264000);
     return () => {
       clearInterval(interval);
     };
