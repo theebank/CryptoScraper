@@ -7,7 +7,7 @@ const App = () => {
 
   useEffect(() => {
     function getData() {
-      fetch("/getdata")
+      fetch("/api/getdata")
         .then((res) => res.json())
         .then((data) => {
           setData(data);

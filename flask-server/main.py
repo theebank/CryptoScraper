@@ -115,7 +115,7 @@ def main():
     print(get_page_data_webscrape())
 
 
-@app.route("/getdata")
+@app.route("/api/getdata")
 def getdata():
     # test3
 

@@ -15,6 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "start-api": "cd ../flask-server && env/bin/flask run --no-debugger",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
