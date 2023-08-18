@@ -1,3 +1,5 @@
+A Full-stack crypto price tracking application built using React, Flask and data stored on a local postgres database ran using Docker. Data is automatically fetched from a flask REST api which can either gather data using coinmarketcap's api or scraping the coinmarketcap.com webpage.
+
 --Simple Demo--
 
 Initial Screenshots
